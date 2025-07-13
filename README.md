@@ -1,36 +1,149 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NazoBlog
 
-## Getting Started
+Firebase + Next.js で構築されたモダンなブログアプリケーション
 
-First, run the development server:
+## 特徴
+
+- **モダンなUI**: Tailwind CSSによる美しいレスポンシブデザイン
+- **リアルタイムデータベース**: Firestore を使用したクラウドデータベース
+- **記事管理**: 作成、編集、削除機能付き管理画面
+- **TypeScript**: 型安全な開発環境
+- **Next.js 15**: 最新のApp Routerを使用
+
+## 技術スタック
+
+- **フロントエンド**: Next.js 15, React, TypeScript
+- **スタイリング**: Tailwind CSS
+- **バックエンド**: Firebase (Firestore)
+- **アイコン**: Heroicons, Lucide React
+- **日付処理**: date-fns
+
+## セットアップ
+
+### 1. 依存関係のインストール
+
+```bash
+npm install
+```
+
+### 2. Firebase設定
+
+1. [Firebase Console](https://console.firebase.google.com/) でプロジェクトを作成
+2. Firestoreデータベースを有効化
+3. `.env.example` を `.env.local` にコピーして Firebase 設定を追加
+
+```bash
+cp .env.example .env.local
+```
+
+`.env.local` ファイルを編集し、Firebase プロジェクトの設定値を入力：
+
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key_here
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project_id.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+```
+
+### 3. 開発サーバーの起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開いてアプリケーションを確認できます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 使用方法
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### ブログ記事の作成
 
-## Learn More
+1. 管理画面（/admin）にアクセス
+2. 「新規記事作成」ボタンをクリック
+3. 記事情報を入力して保存
 
-To learn more about Next.js, take a look at the following resources:
+### 記事の管理
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **表示**: ホームページで公開済み記事を確認
+- **編集**: 管理画面から既存記事を編集
+- **削除**: 管理画面から不要な記事を削除
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## プロジェクト構造
 
-## Deploy on Vercel
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── admin/             # 管理画面
+│   ├── posts/[slug]/      # 記事詳細ページ
+│   ├── layout.tsx         # 共通レイアウト
+│   └── page.tsx           # ホームページ
+├── components/            # 再利用可能なコンポーネント
+│   ├── BlogCard.tsx       # 記事カードコンポーネント
+│   ├── Header.tsx         # ヘッダーコンポーネント
+│   ├── Footer.tsx         # フッターコンポーネント
+│   └── LoadingSpinner.tsx # ローディングスピナー
+├── lib/                   # ユーティリティとAPIラッパー
+│   ├── firebase.ts        # Firebase設定
+│   └── posts.ts           # ブログ投稿API
+└── types/                 # TypeScript型定義
+    └── blog.ts            # ブログ関連の型
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## デプロイメント
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### おすすめのホスティングサービス
+
+1. **Vercel** (推奨)
+   - Next.js に最適化されたプラットフォーム
+   - Gitと連携した自動デプロイ
+   - 無料プランあり
+
+2. **Netlify**
+   - 静的サイトホスティング
+   - 継続的デプロイメント
+   - 無料プランあり
+
+3. **Firebase Hosting**
+   - Firebase と同じプラットフォーム
+   - 高速なCDN
+   - 無料プランあり
+
+### Vercelでのデプロイ手順
+
+1. [Vercel](https://vercel.com) にアカウント作成
+2. GitHubリポジトリを接続
+3. 環境変数を設定（Firebase設定値）
+4. デプロイ実行
+
+## 開発
+
+### 開発コマンド
+
+```bash
+# 開発サーバー起動
+npm run dev
+
+# プロダクションビルド
+npm run build
+
+# プロダクションサーバー起動
+npm run start
+
+# リンター実行
+npm run lint
+```
+
+### コード品質
+
+- ESLint によるコード検証
+- TypeScript による型チェック
+- Tailwind CSS による一貫したスタイリング
+
+## ライセンス
+
+MIT License
+
+## 作者
+
+NazoBlog Team
