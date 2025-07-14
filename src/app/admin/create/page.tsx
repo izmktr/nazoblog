@@ -107,7 +107,7 @@ export default function CreateEventPage() {
           href="/admin"
           className="flex items-center text-purple-600 hover:text-purple-800 mr-4 transition-colors"
         >
-          <ArrowLeftIcon className="h-4 w-4 mr-2" />
+          <ArrowLeftIcon className="icons mr-2" />
           管理画面に戻る
         </Link>
         <h1 className="text-3xl font-bold text-gray-900">新規謎解きイベント作成</h1>
@@ -273,7 +273,7 @@ export default function CreateEventPage() {
                 </>
               ) : (
                 <>
-                  <CheckIcon className="h-4 w-4 mr-2" />
+                  <CheckIcon className="icons mr-2" />
                   保存
                 </>
               )}

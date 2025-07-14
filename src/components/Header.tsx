@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { PencilIcon, PuzzlePieceIcon } from '@heroicons/react/24/outline';
+import { PencilIcon, PuzzlePieceIcon, PlusIcon } from '@heroicons/react/24/outline';
 
 export default function Header() {
   return (
@@ -13,7 +13,7 @@ export default function Header() {
           </Link>
 
           {/* ナビゲーション */}
-          <nav className="flex items-center space-x-6 sm:space-x-8 flex-shrink-0">
+          <nav className="flex items-center space-x-3 sm:space-x-6 flex-shrink-0">
             <Link
               href="/"
               className="text-gray-600 hover:text-gray-900 transition-colors whitespace-nowrap"
@@ -27,6 +27,14 @@ export default function Header() {
               <PencilIcon className="h-4 w-4" />
               <span className="hidden sm:inline">管理</span>
               <span className="sm:hidden">管理</span>
+            </Link>
+            <Link
+              href="/admin/create"
+              className="flex items-center space-x-1 bg-green-600 text-white px-2 sm:px-3 py-2 rounded-md hover:bg-green-700 transition-colors whitespace-nowrap"
+            >
+              <PlusIcon className="h-4 w-4" />
+              <span className="hidden sm:inline">新規登録</span>
+              <span className="sm:hidden">新規</span>
             </Link>
           </nav>
         </div>

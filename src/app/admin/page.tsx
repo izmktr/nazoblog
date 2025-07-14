@@ -32,15 +32,16 @@ export default async function AdminPage() {
       {/* ヘッダー */}
       <div className="flex justify-between items-center mb-8">
         <div className="flex items-center">
-          <PuzzlePieceIcon className="h-6 w-6 text-purple-600 mr-3" />
-          <h1 className="text-3xl font-bold text-gray-900">謎解きイベント管理</h1>
+          <PuzzlePieceIcon className="icons text-purple-600 mr-3" />
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">謎解きイベント管理</h1>
         </div>
         <Link
           href="/admin/create"
-          className="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors"
+          className="inline-flex items-center px-3 sm:px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors whitespace-nowrap"
         >
-          <PlusIcon className="h-4 w-4 mr-2" />
-          新規作成
+          <PlusIcon className="icons mr-2" />
+          <span className="hidden sm:inline">新規作成</span>
+          <span className="sm:hidden">新規</span>
         </Link>
       </div>
 

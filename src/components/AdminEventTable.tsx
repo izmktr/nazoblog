@@ -48,13 +48,13 @@ export default function AdminEventTable({ initialEvents }: AdminEventTableProps)
   if (events.length === 0) {
     return (
       <div className="text-center py-12">
-        <PuzzlePieceIcon className="h-8 w-8 text-gray-400 mx-auto mb-4" />
+        <PuzzlePieceIcon className="icons text-gray-400 mx-auto mb-4" />
         <p className="text-gray-600 text-lg mb-4">まだ謎解きイベントがありません。</p>
         <Link
           href="/admin/create"
           className="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors"
         >
-          <PuzzlePieceIcon className="h-4 w-4 mr-2" />
+          <PuzzlePieceIcon className="icons mr-2" />
           最初のイベントを作成
         </Link>
       </div>
@@ -100,13 +100,13 @@ export default function AdminEventTable({ initialEvents }: AdminEventTableProps)
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center text-sm text-gray-600">
-                    <CalendarIcon className="h-4 w-4 mr-1 flex-shrink-0" />
+                    <CalendarIcon className="icons mr-1 flex-shrink-0" />
                     {format(event.participationDate, 'yyyy/MM/dd', { locale: ja })}
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center text-sm text-gray-600">
-                    <BuildingOfficeIcon className="h-4 w-4 mr-1 flex-shrink-0" />
+                    <BuildingOfficeIcon className="icons mr-1 flex-shrink-0" />
                     {event.organization}
                   </div>
                 </td>
@@ -130,14 +130,14 @@ export default function AdminEventTable({ initialEvents }: AdminEventTableProps)
                       href={`/admin/edit/${event.id}`}
                       className="text-purple-600 hover:text-purple-900 transition-colors"
                     >
-                      <PencilIcon className="h-4 w-4" />
+                      <PencilIcon className="icons" />
                     </Link>
                     <button
                       onClick={() => handleDelete(event.id, event.title)}
                       disabled={deleting === event.id}
                       className="text-red-600 hover:text-red-900 transition-colors disabled:opacity-50"
                     >
-                      <TrashIcon className="h-4 w-4" />
+                      <TrashIcon className="icons" />
                     </button>
                   </div>
                 </td>
