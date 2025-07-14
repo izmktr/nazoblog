@@ -1,9 +1,10 @@
 # NazoBlog
 
-Firebase + Next.js で構築されたモダンなブログアプリケーション
+Firebase + Next.js で構築されたモダンな個人ブログアプリケーション
 
 ## 特徴
 
+- **プライベート認証**: パスワード認証による個人用アクセス制限
 - **モダンなUI**: Tailwind CSSによる美しいレスポンシブデザイン
 - **リアルタイムデータベース**: Firestore を使用したクラウドデータベース
 - **記事管理**: 作成、編集、削除機能付き管理画面
@@ -15,6 +16,7 @@ Firebase + Next.js で構築されたモダンなブログアプリケーショ�
 - **フロントエンド**: Next.js 15, React, TypeScript
 - **スタイリング**: Tailwind CSS
 - **バックエンド**: Firebase (Firestore)
+- **認証**: 環境変数ベースのパスワード認証
 - **アイコン**: Heroicons, Lucide React
 - **日付処理**: date-fns
 
@@ -26,28 +28,36 @@ Firebase + Next.js で構築されたモダンなブログアプリケーショ�
 npm install
 ```
 
-### 2. Firebase設定
+### 2. 環境変数の設定
 
-1. [Firebase Console](https://console.firebase.google.com/) でプロジェクトを作成
-2. Firestoreデータベースを有効化
-3. `.env.example` を `.env.local` にコピーして Firebase 設定を追加
+1. `.env.local.example` を `.env.local` にコピー：
 
 ```bash
-cp .env.example .env.local
+cp .env.local.example .env.local
 ```
 
-`.env.local` ファイルを編集し、Firebase プロジェクトの設定値を入力：
+2. `.env.local` ファイルを編集し、以下の設定を追加：
 
 ```env
+# Firebase設定
 NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key_here
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project_id.appspot.com
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+
+# ブログアクセス用パスワード（お好みのパスワードに変更してください）
+BLOG_PASSWORD=your_secure_password_here
 ```
 
-### 3. 開発サーバーの起動
+### 3. Firebase設定
+
+1. [Firebase Console](https://console.firebase.google.com/) でプロジェクトを作成
+2. Firestoreデータベースを有効化
+3. 上記の環境変数にFirebase設定値を追加
+
+### 4. 開発サーバーの起動
 
 ```bash
 npm run dev
