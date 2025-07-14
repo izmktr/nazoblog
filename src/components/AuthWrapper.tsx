@@ -16,9 +16,22 @@ export default function AuthWrapper({ children }: AuthWrapperProps) {
 
   useEffect(() => {
     // ローカルストレージから認証状態を確認
-    const authenticated = localStorage.getItem('blog_authenticated');
-    if (authenticated === 'true') {
-      setIsAuthenticated(true);
+    const authenticatedData = localStorage.getItem('blog_authenticated');
+    const loginTime = localStorage.getItem('blog_login_time');
+    
+    if (authenticatedData === 'true' && loginTime) {
+      const currentTime = new Date().getTime();
+      const savedTime = parseInt(loginTime);
+      const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000; // 30日間
+      
+      // 30日以内であれば自動ログイン
+      if (currentTime - savedTime < thirtyDaysInMs) {
+        setIsAuthenticated(true);
+      } else {
+        // 期限切れの場合は認証情報をクリア
+        localStorage.removeItem('blog_authenticated');
+        localStorage.removeItem('blog_login_time');
+      }
     }
     setIsLoading(false);
   }, []);
@@ -38,7 +51,9 @@ export default function AuthWrapper({ children }: AuthWrapperProps) {
 
       if (response.ok) {
         setIsAuthenticated(true);
+        const currentTime = new Date().getTime().toString();
         localStorage.setItem('blog_authenticated', 'true');
+        localStorage.setItem('blog_login_time', currentTime);
         setPassword('');
       } else {
         setError('パスワードが正しくありません');
@@ -51,6 +66,7 @@ export default function AuthWrapper({ children }: AuthWrapperProps) {
   const handleLogout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem('blog_authenticated');
+    localStorage.removeItem('blog_login_time');
   };
 
   if (isLoading) {
@@ -71,6 +87,9 @@ export default function AuthWrapper({ children }: AuthWrapperProps) {
             </h2>
             <p className="mt-2 text-sm text-gray-600">
               パスワードを入力してください
+            </p>
+            <p className="mt-1 text-xs text-gray-500">
+              ログイン状態は30日間保持されます
             </p>
           </div>
         </div>
@@ -133,6 +152,7 @@ export default function AuthWrapper({ children }: AuthWrapperProps) {
         <button
           onClick={handleLogout}
           className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-lg"
+          title="ログアウト（次回も自動ログインを無効にします）"
         >
           ログアウト
         </button>
