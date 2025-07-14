@@ -44,7 +44,7 @@ export default async function HomePage() {
           <p className="text-gray-500 mt-2">最初のイベント記録を管理画面から作成してみましょう！</p>
         </div>
       ) : (
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {events.map((event) => (
             <MysteryEventCard key={event.id} event={event} />
           ))}
